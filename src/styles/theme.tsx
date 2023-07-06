@@ -1,7 +1,8 @@
 const theme = {
   colors: {
-    primary: "#ff0000",
-    secondary: "#00ff00",
+    primary: "#da0812",
+    secondary: "#ffff",
+    tertiary: "#00ff00",
   },
   fontSizes: {
     small: "14px",

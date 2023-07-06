@@ -4,6 +4,9 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+
+    outline: 0;
+
     font-family: sans-serif;
   }
 
