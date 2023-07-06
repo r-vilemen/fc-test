@@ -4,13 +4,17 @@ import {
   InputGroup,
   WrapperContent,
   RecoveryPassword,
+  BtnLogin,
+  BtnEye,
+  BtnEyeClosed,
+  InputPasswordGroup,
 } from "@/styles/home/styles";
 import Image from "next/image";
 import logo from "../assets/images/logo-FC.jpg";
 import { useState } from "react";
 
 export default function Home() {
-  const [PasswordType, setPasswordType] = useState<boolean>(true);
+  const [passwordType, setPasswordType] = useState<boolean>(true);
   return (
     <Container>
       <WrapperContent>
@@ -19,16 +23,23 @@ export default function Home() {
         </div>
 
         <InputGroup>
-          <Input placeholder="Login" type="text" />
-          <div>
+          <InputPasswordGroup>
+            <Input placeholder="Login" type="text" />
+          </InputPasswordGroup>
+          <InputPasswordGroup>
             <Input
               placeholder="Senha"
-              type={PasswordType ? "password" : "text"}
+              type={passwordType ? "password" : "text"}
             />
-          </div>
+            {passwordType ? (
+              <BtnEye onClick={() => setPasswordType(false)} />
+            ) : (
+              <BtnEyeClosed onClick={() => setPasswordType(true)} />
+            )}
+          </InputPasswordGroup>
         </InputGroup>
 
-        <button>Entrar</button>
+        <BtnLogin>Entrar</BtnLogin>
         <RecoveryPassword>Redefinir senha</RecoveryPassword>
       </WrapperContent>
     </Container>
