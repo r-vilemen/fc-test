@@ -14,11 +14,12 @@ import {
   SubmitButton,
   PasswordInput,
   ErrorMessageYup,
-} from "../../styles/cadastro/styles";
+} from "../../styles/pages/cadastro/styles";
 import { registrationSchema } from "@/utils/joySchemas/schema";
 import bcrypt from "bcryptjs";
 import { addDoc, collection } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
 
 import { db } from "../../services/firebaseConnection";
 
@@ -40,7 +41,6 @@ export default function Registro() {
     try {
       const auth = getAuth();
 
-      // Criptografar a senha antes de enviar para o Firebase
       const hashedPassword = bcrypt.hashSync(data.password, 10);
 
       const { user } = await createUserWithEmailAndPassword(
@@ -54,10 +54,12 @@ export default function Registro() {
         password: undefined,
         userId: user.uid,
       });
+      router.push("/");
+      toast.success("Usuário cadastrado com sucesso");
     } catch (error) {
       console.log(error);
+      toast.error("Erro ao cadastrar usuário");
     }
-    router.push("/");
   };
 
   return (

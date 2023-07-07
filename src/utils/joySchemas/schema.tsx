@@ -24,13 +24,9 @@ export const registrationSchema = yup.object().shape({
     .test("valid-cpf", "CPF inválido.", (value) => {
       if (!value) return false;
 
-      // Remover pontos e traço do CPF
       const cleanedCPF = value.replace(/[.-]/g, "");
 
-      // Verificar o comprimento do CPF
       if (cleanedCPF.length !== 11) return false;
-
-      // Outras validações do CPF...
 
       return true;
     }),
